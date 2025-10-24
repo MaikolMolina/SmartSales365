@@ -27,3 +27,4 @@ urlpatterns = [
 
     # React app entry point (cualquier otra URL)
     re_path(r"^(?!static/).*", TemplateView.as_view(template_name="index.html")),
+]
