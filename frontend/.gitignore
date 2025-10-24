@@ -40,3 +40,5 @@ build/
 
 # Python virtual environment
 venv/
+
+/backend/staticfiles/
