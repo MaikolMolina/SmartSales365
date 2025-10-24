@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-1q5k$v7h^48s-**kn@il5&v^tlazm4)08qsuc2&v@r7^^d-v&5
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["smartsales365.onrender.com", "localhost", "127.0.0.1"]
 
 
 # Application definition
