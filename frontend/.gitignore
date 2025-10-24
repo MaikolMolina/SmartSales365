@@ -37,3 +37,6 @@ build/
 build/
 .dart_tool/
 .packages
+
+# Python virtual environment
+venv/
