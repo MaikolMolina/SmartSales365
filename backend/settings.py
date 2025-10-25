@@ -25,7 +25,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-1q5k$v7h^48s-**kn@il5&v^tlazm4)08qsuc2&v@r7^^d-v&5'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = os.environ.get('RENDER', False) != 'True'
 
 ALLOWED_HOSTS = ["smartsales365.onrender.com", "localhost", "127.0.0.1"]
 
@@ -100,12 +100,27 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 #    }
 #}
 
-DATABASES = {
-    'default': dj_database_url.config(
-        default=os.environ.get('DATABASE_URL')
-    )
-}
+#DATABASES = {
+#    'default': dj_database_url.config(
+#        default=os.environ.get('DATABASE_URL')
+#    )
+#}
 
+if os.environ.get('DATABASE_URL'):
+    DATABASES = {
+        'default': dj_database_url.config(default=os.environ['DATABASE_URL'])
+    }
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': 'smartsales365',
+            'USER': 'postgres',
+            'PASSWORD': '1346',
+            'HOST': 'localhost',
+            'PORT': '5432',
+        }
+    }
 
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
