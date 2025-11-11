@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import { useAuth } from '../../contexts/AuthContext';
+import api from '../../services/api'; // <-- Importamos nuestro servicio API
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -16,7 +16,7 @@ const Register = () => {
   });
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
-  const navigate = useNavigate(); // <-- reemplazamos useHistory por useNavigate
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setFormData({
@@ -43,25 +43,20 @@ const Register = () => {
     setLoading(true);
 
     try {
-      const response = await fetch('http://localhost:8000/api/auth/register/', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-        credentials: 'include'
-      });
+      // Usamos el servicio api.js
+      const response = await api.post('/auth/register/', formData);
 
-      const data = await response.json();
-
-      if (response.ok) {
-        // Redirigir al home del cliente tras registro exitoso
-        navigate('/client-home'); // <-- usamos navigate en lugar de history.push
+      // Redirigimos si todo salió bien
+      if (response.status === 201 || response.status === 200) {
+        navigate('/client-home');
       } else {
-        setError(data.error || 'Error en el registro');
+        setError(response.data.error || 'Error en el registro');
       }
     } catch (err) {
-      setError('Error de conexión con el servidor');
+      console.error(err);
+      setError(
+        err.response?.data?.error || 'Error de conexión con el servidor'
+      );
     } finally {
       setLoading(false);
     }
@@ -74,7 +69,6 @@ const Register = () => {
         <p>Crea tu cuenta para comenzar a comprar</p>
 
         <form onSubmit={handleSubmit} className="register-form">
-          {/* Filas de formulario */}
           <div className="form-row">
             <div className="form-group">
               <label htmlFor="username">Usuario *</label>
@@ -209,8 +203,8 @@ const Register = () => {
 
           {error && <div className="error-message">{error}</div>}
 
-          <button 
-            type="submit" 
+          <button
+            type="submit"
             disabled={loading}
             className="register-button"
           >
@@ -219,7 +213,9 @@ const Register = () => {
         </form>
 
         <div className="login-link">
-          <p>¿Ya tienes una cuenta? <Link to="/login">Inicia sesión aquí</Link></p>
+          <p>
+            ¿Ya tienes una cuenta? <Link to="/login">Inicia sesión aquí</Link>
+          </p>
         </div>
       </div>
     </div>
