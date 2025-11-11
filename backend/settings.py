@@ -141,6 +141,10 @@ STRIPE_PUBLISHABLE_KEY = os.environ.get('STRIPE_PUBLISHABLE_KEY')
 STRIPE_SECRET_KEY = os.environ.get('STRIPE_SECRET_KEY')
 STRIPE_WEBHOOK_SECRET = os.environ.get('STRIPE_WEBHOOK_SECRET', '')
 
-FRONTEND_URL = 'http://localhost:3000'
+#FRONTEND_URL = 'http://localhost:3000'
+#PAYMENT_SUCCESS_URL = f'{FRONTEND_URL}/payment-success'
+#PAYMENT_CANCEL_URL = f'{FRONTEND_URL}/cart'
+
+FRONTEND_URL = os.environ.get('FRONTEND_URL', 'http://localhost:3000')
 PAYMENT_SUCCESS_URL = f'{FRONTEND_URL}/payment-success'
 PAYMENT_CANCEL_URL = f'{FRONTEND_URL}/cart'
