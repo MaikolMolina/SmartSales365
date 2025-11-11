@@ -3,8 +3,8 @@ import axios from 'axios';
 
 const API_BASE_URL =
   process.env.NODE_ENV === 'production'
-    ? window.location.origin + '/api' // Render
-    : '/api'; // Local, se redirige automáticamente al proxy
+    ? 'https://smartsales365.onrender.com/api' // Tu dominio de Render + prefijo /api
+    : 'http://localhost:8000/api'; // Local para desarrollo
 
 const api = axios.create({
   baseURL: API_BASE_URL,

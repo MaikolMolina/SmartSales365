@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'django-insecure-1234567890')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ["smartsales365.onrender.com", "localhost", "127.0.0.1"]
 
@@ -126,6 +126,7 @@ CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
     "http://127.0.0.1:3000",
     "http://localhost:8080",  # Flutter web
+    "https://smartsales365.onrender.com",
 ]
 CORS_ALLOW_CREDENTIALS = True
 

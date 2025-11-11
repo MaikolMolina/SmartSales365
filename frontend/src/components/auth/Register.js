@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import api from '../../services/api'; // <-- Importamos nuestro servicio API
+import api from '../../services/api'; // <-- Servicio API
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -43,10 +43,9 @@ const Register = () => {
     setLoading(true);
 
     try {
-      // Usamos el servicio api.js
+      // Usamos el servicio api.js (ya tiene la URL correcta)
       const response = await api.post('/auth/register/', formData);
 
-      // Redirigimos si todo salió bien
       if (response.status === 201 || response.status === 200) {
         navigate('/client-home');
       } else {
@@ -54,9 +53,7 @@ const Register = () => {
       }
     } catch (err) {
       console.error(err);
-      setError(
-        err.response?.data?.error || 'Error de conexión con el servidor'
-      );
+      setError(err.response?.data?.error || 'Error de conexión con el servidor');
     } finally {
       setLoading(false);
     }
@@ -203,19 +200,13 @@ const Register = () => {
 
           {error && <div className="error-message">{error}</div>}
 
-          <button
-            type="submit"
-            disabled={loading}
-            className="register-button"
-          >
+          <button type="submit" disabled={loading} className="register-button">
             {loading ? 'Registrando...' : 'Crear Cuenta'}
           </button>
         </form>
 
         <div className="login-link">
-          <p>
-            ¿Ya tienes una cuenta? <Link to="/login">Inicia sesión aquí</Link>
-          </p>
+          <p>¿Ya tienes una cuenta? <Link to="/login">Inicia sesión aquí</Link></p>
         </div>
       </div>
     </div>
