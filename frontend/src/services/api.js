@@ -3,7 +3,8 @@ import axios from 'axios';
 
 const API_BASE_URL =
   process.env.NODE_ENV === 'production'
-    ? '/api' // Render (usa la misma URL del dominio)
+    //? '/api' // Render (usa la misma URL del dominio)
+    ? window.location.origin
     : 'http://localhost:8000/api'; // Local (para desarrollo)
 
 const api = axios.create({
