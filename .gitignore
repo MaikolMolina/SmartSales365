@@ -1,0 +1,65 @@
+# ---------------------------------------
+# Python / Django
+# ---------------------------------------
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.sqlite3
+*.log
+*.pot
+*.py[cod]
+*.swp
+.env
+.env.*
+
+# Virtual environment
+venv/
+
+# Django media / static
+/media/
+staticfiles/
+
+# Django migrations (opcional, si no quieres subirlas)
+**/migrations/*.py
+!**/migrations/__init__.py
+
+# ---------------------------------------
+# Node / React (frontend)
+# ---------------------------------------
+frontend/node_modules/
+frontend/build/
+frontend/.env
+frontend/.env.local
+frontend/.env.development.local
+frontend/.env.test.local
+frontend/.env.production.local
+frontend/npm-debug.log*
+frontend/yarn-debug.log*
+frontend/yarn-error.log*
+.DS_Store
+
+# ---------------------------------------
+# Flutter / mobile
+# ---------------------------------------
+mobile/build/
+mobile/.dart_tool/
+mobile/.packages
+mobile/.flutter-plugins
+mobile/.flutter-plugins-dependencies
+mobile/.idea/
+mobile/.vscode/
+*.iml
+
+# ---------------------------------------
+# IDEs / Misc
+# ---------------------------------------
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+.DS_Store
+Thumbs.db
+
+mobile/android/app/build/
+staticfiles/

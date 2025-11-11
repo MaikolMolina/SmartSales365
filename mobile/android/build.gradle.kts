@@ -1,3 +1,25 @@
+import org.gradle.api.tasks.Delete
+buildscript {
+    repositories {
+        google()
+        mavenCentral()
+    }
+
+    dependencies {
+        // 🔹 Define la versión de Kotlin como variable local
+        val kotlinVersion = "1.9.25"
+
+        // 🔹 Gradle Android plugin
+        classpath("com.android.tools.build:gradle:8.7.0")
+
+        // 🔹 Kotlin Gradle plugin
+        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion")
+
+        // 🔹 Plugin de Google Services (Firebase)
+        classpath("com.google.gms:google-services:4.4.2")
+    }
+}
+
 allprojects {
     repositories {
         google()
@@ -5,20 +27,16 @@ allprojects {
     }
 }
 
-val newBuildDir: Directory =
-    rootProject.layout.buildDirectory
-        .dir("../../build")
-        .get()
-rootProject.layout.buildDirectory.value(newBuildDir)
+rootProject.buildDir = file("../build")
 
 subprojects {
-    val newSubprojectBuildDir: Directory = newBuildDir.dir(project.name)
-    project.layout.buildDirectory.value(newSubprojectBuildDir)
+    buildDir = file("${rootProject.buildDir}/${project.name}")
 }
 subprojects {
     project.evaluationDependsOn(":app")
 }
 
+// 🔹 Tarea de limpieza
 tasks.register<Delete>("clean") {
-    delete(rootProject.layout.buildDirectory)
+    delete(rootProject.buildDir)
 }

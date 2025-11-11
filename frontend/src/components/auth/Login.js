@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useAuth } from '../../contexts/AuthContext';
 import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const Login = () => {
   const [username, setUsername] = useState('');
@@ -52,6 +53,10 @@ const Login = () => {
             required
             disabled={loading}
           />
+        </div>
+
+        <div className="register-link">
+          <p>¿No tienes cuenta? <Link to="/register">Regístrate como cliente</Link></p>
         </div>
 
         {error && <div className="error-message">{error}</div>}

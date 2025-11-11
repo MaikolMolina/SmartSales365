@@ -39,6 +39,16 @@ class Usuario(AbstractUser):
     telefono = models.CharField(max_length=20, blank=True)
     direccion = models.TextField(blank=True)
     rol = models.ForeignKey(Rol, on_delete=models.SET_NULL, null=True, blank=True, related_name='usuarios')
+    
+    # Relación con el modelo Cliente (si el usuario es cliente)
+    cliente = models.OneToOneField(
+        'commercial.Cliente', 
+        on_delete=models.SET_NULL, 
+        null=True, 
+        blank=True, 
+        related_name='usuario'
+    )
+    
     activo = models.BooleanField(default=True)
     fecha_actualizacion = models.DateTimeField(auto_now=True)
 
