@@ -6,6 +6,13 @@ import 'views/auth/login_screen.dart';
 import 'views/auth/home_screen.dart';
 import 'views/notifications/notifications_screen.dart';
 
+// 🔹 Importa las nuevas vistas
+import 'views/client/client_home.dart';
+import 'views/products/product_list.dart';
+import 'views/cart/cart_screen.dart';
+import 'views/cart/checkout_screen.dart';
+import 'views/payments/payment_success_screen.dart';
+
 class App extends StatefulWidget {
   const App({Key? key}) : super(key: key);
 
@@ -41,9 +48,20 @@ class _AppState extends State<App> {
           useMaterial3: true,
         ),
         routes: {
-          '/login': (context) => const LoginScreen(),
-          '/home': (context) => const HomeScreen(),
-          '/notifications': (context) => const NotificationsScreen(),
+          // 🔹 Rutas existentes
+          '/login': (context) => LoginScreen(),
+          '/home': (context) => HomeScreen(),
+          '/notifications': (context) => NotificationsScreen(),
+
+          // 🔹 Nuevas rutas agregadas
+          '/client-home': (context) => ClientHome(),
+          '/products': (context) => ProductList(),
+          '/cart': (context) => CartScreen(),
+          '/checkout': (context) => CheckoutScreen(),
+          '/payment-success': (context) => PaymentSuccessScreen(
+                sessionId: '',
+                orderId: 0,
+              ),
         },
         home: FutureBuilder<bool>(
           future: _authService.isLoggedIn(),
@@ -54,9 +72,10 @@ class _AppState extends State<App> {
               );
             } else {
               if (snapshot.hasData && snapshot.data!) {
-                return const HomeScreen();
+                // 🔹 Al iniciar sesión, se redirige a ClientHome (como en la nueva versión)
+                return ClientHome();
               } else {
-                return const LoginScreen();
+                return LoginScreen();
               }
             }
           },

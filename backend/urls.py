@@ -24,6 +24,7 @@ urlpatterns = [
     path('api/reports/', include('backend.dynamic_reports.urls')),
     path('api/business-intelligence/', include('backend.business_intelligence.urls')),
     path('api/auth/', include('backend.access_control.urls')),
+    path('api/sales/', include('backend.sales.urls')),
 
     # React app entry point (cualquier otra URL)
     re_path(r"^(?!static/).*", TemplateView.as_view(template_name="index.html")),

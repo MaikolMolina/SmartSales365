@@ -61,6 +61,12 @@ const Navbar = () => {
               📊 Reportes
             </Link>
             <Link 
+              to="/predictions" 
+              className={location.pathname === '/predictions' ? 'active' : ''}
+            >
+              📈 Predicciones IA
+            </Link>
+            <Link 
               to="/auditoria" 
               className={location.pathname === '/auditoria' ? 'active' : ''}
             >

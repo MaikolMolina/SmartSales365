@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'backend.dynamic_reports',
     'backend.business_intelligence',
     'backend.access_control',
+    'backend.sales',
 ]
 
 MIDDLEWARE = [

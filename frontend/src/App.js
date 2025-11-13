@@ -19,6 +19,7 @@ import PurchaseHistory from './components/purchases/PurchaseHistory';
 import Cart from './components/cart/Cart';
 import CheckoutPage from './pages/CheckoutPage';
 import PaymentSuccess from './components/payments/PaymentSuccess';
+import PredictionDashboard from './components/PredictionDashboard';
 import './components/payments/Payments.css';
 import './App.css';
 
@@ -68,6 +69,10 @@ function AppContent() {
             <Route
               path="/reportes"
               element={user?.rol === 'Administrador' ? <ReportsPage /> : <Navigate to="/client-home" replace />}
+            />
+            <Route
+              path="/predictions"
+              element={user?.rol === 'Administrador' ? <PredictionDashboard /> : <Navigate to="/client-home" replace />}
             />
 
             {/* Rutas Cliente */}

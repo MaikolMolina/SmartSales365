@@ -15,9 +15,9 @@ void main() async {
   await NotificationService().initialize();
   final fcmToken = await FirebaseMessaging.instance.getToken();
   print('👉 Token FCM: $fcmToken');
-  runApp(const MyApp());
+  runApp(const App());
 }
-
+/*
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
@@ -31,4 +31,4 @@ class MyApp extends StatelessWidget {
       ),
     );
   }
-}
+}*/

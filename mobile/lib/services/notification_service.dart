@@ -126,15 +126,21 @@ class NotificationService {
 
   Future<void> _sendTokenToServer(String token) async {
     try {
-      // Enviar token al backend Django
-      final response = await ApiService.post('/auth/save_fcm_token/', {
-        'fcm_token': token,
-      });
-
+      final prefs = await SharedPreferences.getInstance();
+      final authToken = prefs.getString('token') ?? '';
+  
+      final response = await ApiService.post(
+        '/auth/save_fcm_token/',
+        {'fcm_token': token},
+        headers: {
+          'Authorization': 'Token $authToken',
+        },
+      );
+  
       if (response.statusCode == 200) {
         print('✅ Token enviado al servidor exitosamente');
       } else {
-        print('❌ Error enviando token al servidor: ${response.statusCode}');
+        print('❌ Error enviando token: ${response.statusCode} - ${response.body}');
       }
     } catch (e) {
       print('❌ Error enviando token: $e');

@@ -11,12 +11,25 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+
+  # HTTP requests
   http: ^1.5.0
+
+  # Almacenamiento local
   shared_preferences: ^2.0.15
+
+  # Firebase
   firebase_core: ^2.15.1
   firebase_messaging: ^14.6.1
   flutter_local_notifications: ^19.5.0
+
+  # State management
   provider: ^6.0.5
+
+  # WebView (si necesitas mostrar contenido web)
+  webview_flutter: ^4.8.0
+  webview_flutter_android: ^3.16.0
+  webview_flutter_wkwebview: ^3.11.0
 
 dev_dependencies:
   flutter_test:
